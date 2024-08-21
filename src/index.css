@@ -1,3 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
 	margin: 0;
+}
+
+input::file-selector-button {
+	font-weight: bold;
+	color: #095aac;
+	padding: 10px 20px;
+	border: 2px solid #095aac;
+	border-radius: 3px;
+	cursor: pointer;
 }
