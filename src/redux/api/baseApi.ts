@@ -1,15 +1,10 @@
-// Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../store";
 
-// Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
 	reducerPath: "baseApi",
 	baseQuery: fetchBaseQuery({
 		baseUrl: "http://localhost:5000/api/",
-		// credentials: "include",
-		prepareHeaders: (headers, { getState }) => {
-			// const token = (getState() as RootState).auth.token;
+		prepareHeaders: (headers) => {
 			const token = localStorage.getItem("token");
 			if (token) {
 				headers.set("authorization", token);
@@ -17,10 +12,23 @@ export const baseApi = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["products"],
+	tagTypes: ["products", "categories"],
 	endpoints: (builder) => ({
 		getAllProducts: builder.query({
 			query: (searchTerm) => `products/get-products`,
+			providesTags: ["products"],
+		}),
+		getAllCategories: builder.query({
+			query: () => `products/get-categories`,
+			providesTags: ["categories"],
+		}),
+		getProductsByCategory: builder.query({
+			query: (category) => {
+				return {
+					url: `/products/getProductsByCategory/${category}`,
+					method: "GET",
+				};
+			},
 			providesTags: ["products"],
 		}),
 		getProductById: builder.query({
@@ -55,52 +63,15 @@ export const baseApi = createApi({
 			}),
 			invalidatesTags: ["products"],
 		}),
-		// getTodos: builder.query({
-		// 	query: (priority) => {
-		// 		const params = new URLSearchParams();
-		// 		if (priority) {
-		// 			params.append("priority", priority);
-		// 		}
-		// 		return {
-		// 			url: `/tasks`,
-		// 			method: "GET",
-		// 			params: params,
-		// 		};
-		// 	},
-		// 	providesTags: ["products"],
-		// }),
-		// addTodo: builder.mutation({
-		// 	query: (data) => ({
-		// 		url: "/task",
-		// 		method: "POST",
-		// 		body: data,
-		// 	}),
-		// 	invalidatesTags: ["products"],
-		// }),
-		// updateTodo: builder.mutation({
-		// 	query: (options) => ({
-		// 		url: `/task/${options.id}`,
-		// 		method: "PUT",
-		// 		body: options.data,
-		// 	}),
-		// 	invalidatesTags: ["products"],
-		// }),
-		// deleteTodo: builder.mutation({
-		// 	query: (id) => ({
-		// 		url: `/task/${id}`,
-		// 		method: "DELETE",
-		// 	}),
-		// 	invalidatesTags: ["products"],
-		// }),
 	}),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const {
 	useGetAllProductsQuery,
 	useGetProductByIdQuery,
 	useAddProductMutation,
 	useUpdateProductMutation,
 	useDeleteProductMutation,
+	useGetAllCategoriesQuery,
+	useGetProductsByCategoryQuery,
 } = baseApi;

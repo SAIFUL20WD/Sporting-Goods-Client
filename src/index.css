@@ -4,13 +4,69 @@
 
 * {
 	margin: 0;
+	padding: 0;
 }
 
-input::file-selector-button {
-	font-weight: bold;
-	color: #095aac;
-	padding: 10px 20px;
-	border: 2px solid #095aac;
-	border-radius: 3px;
-	cursor: pointer;
+body {
+	font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	scroll-behavior: smooth;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #6b68e7;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #934beb;
+}
+
+.active {
+	color: #6b68e7;
+}
+
+/* NAVIGATION */
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+	transition: all 0.5s;
+}
+
+nav ul li a:hover {
+	color: #6b68e7;
+}
+
+nav ul li a {
+	position: relative;
+}
+
+nav ul li a:after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 0%;
+	content: "";
+	color: transparent;
+	background: #6b68e7;
+	height: 2px;
+}
+
+nav ul li a:hover:after {
+	width: 100%;
 }

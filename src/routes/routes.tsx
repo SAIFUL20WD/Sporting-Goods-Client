@@ -5,8 +5,10 @@ import AllProductPage from "../pages/AllProductPage";
 import ManageProductsPage from "../pages/ManageProductsPage";
 import LoginPage from "../pages/LoginPage";
 import AddProduct from "../components/ManageProducts/AddProduct";
-import ManageProducts from "../components/ManageProducts/ManageProducts";
+import ViewProducts from "../components/ManageProducts/ViewProducts";
 import EditProduct from "../components/ManageProducts/EditProduct";
+import AboutUsPage from "../pages/AboutUsPage";
+import RegisterPage from "../pages/RegisterPage";
 
 const router = createBrowserRouter([
 	{
@@ -19,29 +21,15 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "all-products",
-				element: <AllProductPage />,
+				element: <AllProductPage categoryStatus={false} />,
+			},
+			{
+				path: "all-products/:category",
+				element: <AllProductPage categoryStatus={true} />,
 			},
 			{
 				path: "product/:id",
 				element: <h1>This is single Product page</h1>,
-			},
-			{
-				path: "manage-products",
-				element: <ManageProductsPage />,
-				children: [
-					{
-						path: "",
-						element: <ManageProducts />,
-					},
-					{
-						path: "add-product",
-						element: <AddProduct />,
-					},
-					{
-						path: "edit-product/:id",
-						element: <EditProduct />,
-					},
-				],
 			},
 			{
 				path: "cart",
@@ -53,13 +41,35 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "about-us",
-				element: <h1>This is about us</h1>,
+				element: <AboutUsPage />,
+			},
+		],
+	},
+	{
+		path: "manage-products",
+		element: <ManageProductsPage />,
+		children: [
+			{
+				path: "view-products",
+				element: <ViewProducts />,
+			},
+			{
+				path: "add-product",
+				element: <AddProduct />,
+			},
+			{
+				path: "edit-product/:id",
+				element: <EditProduct />,
 			},
 		],
 	},
 	{
 		path: "/login",
 		element: <LoginPage />,
+	},
+	{
+		path: "/register",
+		element: <RegisterPage />,
 	},
 ]);
 

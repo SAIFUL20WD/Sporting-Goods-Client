@@ -1,21 +1,23 @@
-import { Carousel } from "antd";
-import { Link } from "react-router-dom";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import banner1 from "../../assets/images/banner/Flash Sale Banner.png";
+import banner2 from "../../assets/images/banner/Shoes Sale Banner.png";
+import banner3 from "../../assets/images/banner/Gym Sale Banner.png";
 
-const Hero = () => (
-	<Carousel autoplay>
-		<Link to="/all-products">
-			<img
-				src="https://admin.dazzle.com.bd/assets/accounts/a_8037/pro_3_picture834.jpg"
-				className="w-full"
-			/>
-		</Link>
-		<Link to="/">
-			<img
-				src="https://admin.dazzle.com.bd/assets/accounts/a_8037/pro_2_picture819.jpg"
-				className="w-full"
-			/>
-		</Link>
-	</Carousel>
-);
+const Hero = () => {
+	return (
+		<Carousel>
+			<div>
+				<img src={banner1} />
+			</div>
+			<div>
+				<img src={banner2} />
+			</div>
+			<div>
+				<img src={banner3} />
+			</div>
+		</Carousel>
+	);
+};
 
 export default Hero;

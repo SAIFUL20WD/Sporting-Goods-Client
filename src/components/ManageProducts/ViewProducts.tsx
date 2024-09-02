@@ -1,11 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
 	useDeleteProductMutation,
 	useGetAllProductsQuery,
 } from "../../redux/api/baseApi";
 import toast from "react-hot-toast";
+import { FaTrashAlt } from "react-icons/fa";
+import { FaPenToSquare } from "react-icons/fa6";
 
-const ManageProducts = () => {
+const ViewProducts = () => {
 	const { data } = useGetAllProductsQuery(null);
 	const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const ManageProducts = () => {
 
 	const handleConfirmation = (msg, id) => {
 		toast((t) => (
-			<span>
+			<span className="w-80">
 				Are You Sure to <b>{msg} This Product</b>
 				<button
 					onClick={() => {
@@ -25,7 +27,7 @@ const ManageProducts = () => {
 							navigate(`edit-product/${id}`);
 						}
 					}}
-					className="p-1 bg-red-500 text-white rounded mx-3"
+					className="p-1 bg-red-500 text-white rounded mx-2"
 				>
 					Yes
 				</button>
@@ -42,11 +44,11 @@ const ManageProducts = () => {
 	};
 
 	return (
-		<div className="col-span-6 p-5 rounded">
-			<table className="table-auto bg-slate-200">
+		<div className="col-span-9 p-5 rounded lg:-ml-16">
+			<table className="table-auto bg-[#eee] rounded shadow-lg">
 				<thead>
 					<tr className="[&>*]:p-5 border-b-2 border-gray-950">
-						<th>#</th>
+						<th>No</th>
 						<th>Image</th>
 						<th>Name</th>
 						<th>Description</th>
@@ -68,7 +70,7 @@ const ManageProducts = () => {
 										<img
 											src={item.image[0]}
 											alt=""
-											className="w-20"
+											className="w-16"
 										/>
 									</td>
 									<td>{item.name}</td>
@@ -78,9 +80,9 @@ const ManageProducts = () => {
 									<td>{item.price}</td>
 									<td>{item.inventory.quantity}</td>
 									<td>{item.rating}</td>
-									<td className="flex">
+									<td className="flex mt-3">
 										<button
-											className="p-3 bg-blue-500 text-white cursor-pointer rounded mr-3"
+											className="bg-primary text-white cursor-pointer rounded p-2 mr-3"
 											onClick={() =>
 												handleConfirmation(
 													"Edit",
@@ -88,10 +90,10 @@ const ManageProducts = () => {
 												)
 											}
 										>
-											Edit
+											<FaPenToSquare />
 										</button>
 										<button
-											className="p-3 bg-red-500 text-white cursor-pointer rounded"
+											className="bg-red-500 text-white cursor-pointer rounded p-2"
 											onClick={() =>
 												handleConfirmation(
 													"Delete",
@@ -99,7 +101,7 @@ const ManageProducts = () => {
 												)
 											}
 										>
-											Delete
+											<FaTrashAlt />
 										</button>
 									</td>
 								</tr>
@@ -111,4 +113,4 @@ const ManageProducts = () => {
 	);
 };
 
-export default ManageProducts;
+export default ViewProducts;

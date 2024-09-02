@@ -1,8 +1,18 @@
-import { useGetAllProductsQuery } from "../redux/api/baseApi";
+import { useParams } from "react-router-dom";
+import {
+	useGetAllProductsQuery,
+	useGetProductsByCategoryQuery,
+} from "../redux/api/baseApi";
 
-const AllProductPage = () => {
-	const { data, isLoading, error } = useGetAllProductsQuery(null);
-	console.log(data);
+const AllProductPage = ({ categoryStatus }) => {
+	const { category } = useParams();
+
+	const { data: products, isLoading, error } = useGetAllProductsQuery(null);
+	const { data: categoryProducts } = useGetProductsByCategoryQuery(category);
+
+	if (categoryStatus) {
+		return <h3>Category</h3>;
+	}
 	return <div></div>;
 };
 

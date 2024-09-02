@@ -1,31 +1,28 @@
-import React from "react";
-import { Card } from "antd";
 import { Link } from "react-router-dom";
+import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
 
-const gridStyle: React.CSSProperties = {
-	width: "25%",
-	textAlign: "center",
+const Category = () => {
+	const { data, isLoading, error } = useGetAllCategoriesQuery(null);
+	return (
+		<section className="max-w-7xl mx-auto">
+			<h2 className="uppercase text-2xl text-center font-bold mb-10 p-5 text-[#6b68e7]">
+				Categories
+			</h2>
+			<div className="grid grid-cols-12">
+				{data?.data?.map((item, i) => {
+					return (
+						<Link
+							to={`all-products/${item}`}
+							key={i}
+							className="col-span-2 bg-gray-100 rounded shadow hover:shadow-lg duration-200 p-5"
+						>
+							<h3 className="text-center">{item}</h3>
+						</Link>
+					);
+				})}
+			</div>
+		</section>
+	);
 };
-
-const categories = [
-	{ id: 1, name: "Category 1" },
-	{ id: 2, name: "Category 2" },
-	{ id: 3, name: "Category 3" },
-	{ id: 4, name: "Category 4" },
-	{ id: 5, name: "Category 5" },
-	{ id: 6, name: "Category 6" },
-];
-
-const Category = () => (
-	<Card title="Categories" className="text-center mb-16">
-		{categories.map((item) => {
-			return (
-				<Card.Grid style={gridStyle} key={item.id}>
-					<Link to={`/all-products/${item.name}`}>{item.name}</Link>
-				</Card.Grid>
-			);
-		})}
-	</Card>
-);
 
 export default Category;
