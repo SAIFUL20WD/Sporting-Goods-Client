@@ -1,8 +1,9 @@
-import { Card, Col, Row } from "antd";
+import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const dummyProducts = [
 	{
+		_id: 1,
 		name: "Cricket Ball - Pro Elite",
 		description:
 			"High-quality Cricket Ball with enhanced grip and durability, perfect for professional matches.",
@@ -24,6 +25,7 @@ const dummyProducts = [
 		},
 	},
 	{
+		_id: 2,
 		name: "Cricket Bat - Pro Stick",
 		description:
 			"Top-grade cricket bat made from premium English willow. Ideal for aggressive batting.",
@@ -45,6 +47,7 @@ const dummyProducts = [
 		},
 	},
 	{
+		_id: 3,
 		name: "Football - Training Ball",
 		description:
 			"Durable training football designed for practice sessions and casual play.",
@@ -66,6 +69,7 @@ const dummyProducts = [
 		},
 	},
 	{
+		_id: 4,
 		name: "Cricket Helmet - Pro Guard",
 		description:
 			"Advanced cricket helmet with full face guard and adjustable fit for maximum protection.",
@@ -89,34 +93,57 @@ const dummyProducts = [
 ];
 
 const Featured = () => (
-	<section className="my-10">
-		<h2 className="my-5 inline-block text-transparent bg-clip-text text-3xl font-bold font-serif bg-gradient-to-r from-indigo-500 to-indigo-800">
-			Featured
+	<section className="max-w-5xl mx-auto my-10">
+		<h2 className="uppercase text-2xl text-center font-bold text-[#6b68e7] p-5 my-5">
+			Featured Products
 		</h2>
-		<Row gutter={16}>
+		<div>
 			{dummyProducts.map((product) => {
 				return (
-					<Col span={8} className="my-5" key={product.name}>
-						<Card
-							title={product.name}
-							cover={<img src={product.image[0]} alt="" />}
-						>
-							<div>
-								<h3>Category</h3>
-								<h3>Brand</h3>
-								<p>Stock</p>
-								<p>Rating</p>
-								<p>Price</p>
-								<p>Details</p>
-								<button className="text-white text-center px-10 py-3 rounded font-bold bg-gradient-to-r from-indigo-500 to-indigo-800">
-									<Link to="/product/:id">View Details</Link>
-								</button>
+					<div
+						className="grid grid-cols-12 gap-10 mb-10 bg-white p-5 shadow-xl rounded-lg"
+						key={product._id}
+					>
+						<div className="col-span-4">
+							<img
+								src={product.image[0]}
+								alt=""
+								className="rounded-lg"
+							/>
+						</div>
+						<div className="col-span-8 mr-5">
+							<div className="flex justify-between items-center mb-3">
+								<h4 className="text-[#8c8b8b] font-semibold">
+									{product.category}
+								</h4>
+								<p className="flex justify-center items-center gap-1">
+									<FaStar className="text-yellow-400" />
+									{product.rating}
+								</p>
+								<p>Stock: {product.inventory.quantity}</p>
+								<h4 className="bg-slate-200 rounded-full px-3 py-1">
+									{product.brand}
+								</h4>
 							</div>
-						</Card>
-					</Col>
+							<h3 className="text-3xl font-bold text-zinc-700">
+								{product.name}
+							</h3>
+							<p className="text-[17px] text-slate-600 my-2">
+								{product.description}
+							</p>
+							<p className="text-xl font-semibold">
+								${product.price}
+							</p>
+							<button className="text-white text-center px-10 py-3 my-5 rounded font-bold bg-gradient-to-r from-indigo-500 to-indigo-800">
+								<Link to={`/product/${product._id}`}>
+									View Details
+								</Link>
+							</button>
+						</div>
+					</div>
 				);
 			})}
-		</Row>
+		</div>
 	</section>
 );
 

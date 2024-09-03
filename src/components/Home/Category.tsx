@@ -14,9 +14,11 @@ const Category = () => {
 						<Link
 							to={`all-products/${item}`}
 							key={i}
-							className="col-span-2 bg-gray-100 rounded shadow hover:shadow-lg duration-200 p-5"
+							className="col-span-2 bg-[#eee] rounded shadow hover:shadow-lg duration-200 p-5"
 						>
-							<h3 className="text-center">{item}</h3>
+							<h3 className="text-center font-semibold text-zinc-800">
+								{item}
+							</h3>
 						</Link>
 					);
 				})}

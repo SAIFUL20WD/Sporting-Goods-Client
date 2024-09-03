@@ -24,7 +24,7 @@ const ViewProducts = () => {
 							deleteProduct(id);
 							toast.success("Product deleted successfully");
 						} else if (msg == "Edit") {
-							navigate(`edit-product/${id}`);
+							navigate(`/manage-products/edit-product/${id}`);
 						}
 					}}
 					className="p-1 bg-red-500 text-white rounded mx-2"
