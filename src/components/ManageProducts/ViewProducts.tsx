@@ -52,7 +52,7 @@ const ViewProducts = () => {
 						<th>Image</th>
 						<th>Name</th>
 						<th>Description</th>
-						<th>Band</th>
+						<th>Brand</th>
 						<th>Category</th>
 						<th>Price</th>
 						<th>Quantity</th>

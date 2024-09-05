@@ -9,6 +9,10 @@ import ViewProducts from "../components/ManageProducts/ViewProducts";
 import EditProduct from "../components/ManageProducts/EditProduct";
 import AboutUsPage from "../pages/AboutUsPage";
 import RegisterPage from "../pages/RegisterPage";
+import SingleProductPage from "../pages/SingleProductPage";
+import CartPage from "../pages/CartPage";
+import NotFound from "../pages/NotFound";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const router = createBrowserRouter([
 	{
@@ -29,11 +33,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "product/:id",
-				element: <h1>This is single Product page</h1>,
+				element: <SingleProductPage />,
 			},
 			{
 				path: "cart",
-				element: <h1>This is cart </h1>,
+				element: <CartPage />,
 			},
 			{
 				path: "checkout",
@@ -47,7 +51,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "manage-products",
-		element: <ManageProductsPage />,
+		element: (
+			<ProtectedRoute>
+				<ManageProductsPage />
+			</ProtectedRoute>
+		),
 		children: [
 			{
 				path: "view-products",
@@ -73,7 +81,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "*",
-		element: <h1>404 Not Found</h1>,
+		element: <NotFound />,
 	},
 ]);
 

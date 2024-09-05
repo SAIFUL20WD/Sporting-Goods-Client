@@ -3,7 +3,6 @@ import { useRegisterMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { verifyToken } from "../utils/verifyToken";
 import { setUser } from "../redux/features/auth/authSlice";
 import logo from "../assets/images/logo/Sporting Goods Logo.png";
 

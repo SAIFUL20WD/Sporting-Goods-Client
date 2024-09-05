@@ -40,6 +40,15 @@ export const baseApi = createApi({
 			},
 			providesTags: ["products"],
 		}),
+		getProductsByTag: builder.query({
+			query: (tag) => {
+				return {
+					url: `/products/getProductsByTag/${tag}`,
+					method: "GET",
+				};
+			},
+			providesTags: ["products"],
+		}),
 		addProduct: builder.mutation({
 			query: (data) => ({
 				url: "/products/create-product",
@@ -74,4 +83,5 @@ export const {
 	useDeleteProductMutation,
 	useGetAllCategoriesQuery,
 	useGetProductsByCategoryQuery,
+	useGetProductsByTagQuery,
 } = baseApi;

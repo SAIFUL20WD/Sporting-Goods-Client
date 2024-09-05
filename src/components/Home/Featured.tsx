@@ -1,5 +1,6 @@
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useGetProductsByTagQuery } from "../../redux/api/baseApi";
 
 const dummyProducts = [
 	{
@@ -92,59 +93,63 @@ const dummyProducts = [
 	},
 ];
 
-const Featured = () => (
-	<section className="max-w-5xl mx-auto my-10">
-		<h2 className="uppercase text-2xl text-center font-bold text-[#6b68e7] p-5 my-5">
-			Featured Products
-		</h2>
-		<div>
-			{dummyProducts.map((product) => {
-				return (
-					<div
-						className="grid grid-cols-12 gap-10 mb-10 bg-white p-5 shadow-xl rounded-lg"
-						key={product._id}
-					>
-						<div className="col-span-4">
-							<img
-								src={product.image[0]}
-								alt=""
-								className="rounded-lg"
-							/>
-						</div>
-						<div className="col-span-8 mr-5">
-							<div className="flex justify-between items-center mb-3">
-								<h4 className="text-[#8c8b8b] font-semibold">
-									{product.category}
-								</h4>
-								<p className="flex justify-center items-center gap-1">
-									<FaStar className="text-yellow-400" />
-									{product.rating}
-								</p>
-								<p>Stock: {product.inventory.quantity}</p>
-								<h4 className="bg-slate-200 rounded-full px-3 py-1">
-									{product.brand}
-								</h4>
+const Featured = () => {
+	const { data } = useGetProductsByTagQuery("featured");
+
+	return (
+		<section className="max-w-5xl mx-auto my-10">
+			<h2 className="uppercase text-2xl text-center font-bold text-[#6b68e7] p-5 my-5">
+				Featured Products
+			</h2>
+			<div>
+				{data?.data?.map((product) => {
+					return (
+						<div
+							className="grid grid-cols-12 gap-10 mb-10 bg-white p-5 shadow-xl rounded-lg"
+							key={product._id}
+						>
+							<div className="col-span-4">
+								<img
+									src={product.image[0]}
+									alt=""
+									className="rounded-lg"
+								/>
 							</div>
-							<h3 className="text-3xl font-bold text-zinc-700">
-								{product.name}
-							</h3>
-							<p className="text-[17px] text-slate-600 my-2">
-								{product.description}
-							</p>
-							<p className="text-xl font-semibold">
-								${product.price}
-							</p>
-							<button className="text-white text-center px-10 py-3 my-5 rounded font-bold bg-gradient-to-r from-indigo-500 to-indigo-800">
+							<div className="col-span-8 mr-5">
+								<div className="flex justify-between items-center mb-3">
+									<h4 className="text-[#8c8b8b] font-semibold">
+										{product.category}
+									</h4>
+									<p className="flex justify-center items-center gap-1">
+										<FaStar className="text-yellow-400" />
+										{product.rating}
+									</p>
+									<p>Stock: {product.inventory.quantity}</p>
+									<h4 className="bg-slate-200 rounded-full px-3 py-1">
+										{product.brand}
+									</h4>
+								</div>
+								<h3 className="text-3xl font-bold text-zinc-700">
+									{product.name}
+								</h3>
+								<p className="text-[17px] text-slate-600 my-2">
+									{product.description}
+								</p>
+								<p className="text-xl font-semibold">
+									${product.price}
+								</p>
 								<Link to={`/product/${product._id}`}>
-									View Details
+									<button className="text-white text-center px-10 py-3 my-5 rounded font-bold bg-gradient-to-r from-indigo-500 to-indigo-800">
+										View Details
+									</button>
 								</Link>
-							</button>
+							</div>
 						</div>
-					</div>
-				);
-			})}
-		</div>
-	</section>
-);
+					);
+				})}
+			</div>
+		</section>
+	);
+};
 
 export default Featured;

@@ -4,9 +4,12 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { logOut } from "../../redux/features/auth/authSlice";
+import { useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 
 const Navbar = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
+	const cart = useAppSelector((state: RootState) => state.cart.cart);
 	const handleLogOut = () => {
 		localStorage.removeItem("token");
 		logOut();
@@ -56,16 +59,19 @@ const Navbar = () => {
 						About Us
 					</NavLink>
 				</li>
-				<li className="flex items-center">
-					<FaCartShopping size={18} />
+				<li className="flex items-center relative">
+					<FaCartShopping size={18} className="mx-1" />
 					<NavLink
 						to="/cart"
 						className={({ isActive }) =>
-							(isActive ? "active" : "") + "mx-1"
+							(isActive ? "active" : "") + ""
 						}
 					>
 						Cart
 					</NavLink>
+					<p className="absolute bottom-4 left-1 text-sm text-white bg-[#6b68e7] px-2 rounded-full -z-10">
+						{cart.length > 0 ? cart.length : ""}
+					</p>
 				</li>
 				<li className="flex items-center">
 					<FaRegUserCircle size={18} className="mx-1" />
