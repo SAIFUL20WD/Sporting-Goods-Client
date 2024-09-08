@@ -5,6 +5,7 @@ import {
 	useUpdateProductMutation,
 } from "../../redux/api/baseApi";
 import { useNavigate, useParams } from "react-router-dom";
+import useDisableNumberInputScroll from "../../hooks/useDisableNumberInputScroll";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -12,6 +13,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const EditProduct = () => {
 	const { id } = useParams();
 	const { data } = useGetProductByIdQuery(id);
+	useDisableNumberInputScroll();
 	const navigate = useNavigate();
 
 	const [product, setProduct] = useState({});
@@ -24,7 +26,7 @@ const EditProduct = () => {
 		navigate("/manage-products/view-products");
 	};
 
-	const handleImageUpload = async (e: any) => {
+	const handleImageUpload = async (e) => {
 		const toastId = toast.loading("Uploading");
 
 		const file = e.target.files[0];
@@ -68,7 +70,7 @@ const EditProduct = () => {
 							</h3>
 						</div>
 						<form onSubmit={handleSubmit}>
-							<div className="p-10">
+							<div className="py-10 px-20">
 								<div className="mb-4.5">
 									<label
 										htmlFor="name"
@@ -305,7 +307,7 @@ const EditProduct = () => {
 									</div>
 								</div>
 
-								<button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+								<button className="uppercase flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
 									Update Product
 								</button>
 							</div>

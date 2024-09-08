@@ -1,7 +1,8 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { useAddProductMutation } from "../../redux/api/baseApi";
 import { useNavigate } from "react-router-dom";
+import useDisableNumberInputScroll from "../../hooks/useDisableNumberInputScroll";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -9,9 +10,9 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddProduct = () => {
 	const [product, setProduct] = useState({});
 	const navigate = useNavigate();
+	useDisableNumberInputScroll();
 
-	const [addProduct, { isLoading, isError, isSuccess }] =
-		useAddProductMutation();
+	const [addProduct] = useAddProductMutation();
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
@@ -20,7 +21,7 @@ const AddProduct = () => {
 		navigate("/manage-products/view-products");
 	};
 
-	const handleImageUpload = async (e: any) => {
+	const handleImageUpload = async (e) => {
 		const toastId = toast.loading("Uploading");
 		const file = e.target.files[0];
 		const formData = new FormData();
@@ -45,7 +46,7 @@ const AddProduct = () => {
 	};
 
 	return (
-		<div className="grid-cols-9 sm:grid-cols-2 -ml-20 p-10 bg-slate-100">
+		<div className="grid-cols-9 sm:grid-cols-2 p-10 bg-slate-100 -ml-20">
 			<div className="flex flex-col gap-9">
 				<div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 					<div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
@@ -54,7 +55,7 @@ const AddProduct = () => {
 						</h3>
 					</div>
 					<form onSubmit={handleSubmit}>
-						<div className="p-10">
+						<div className="py-10 px-20">
 							<div className="mb-4.5">
 								<label
 									htmlFor="name"
@@ -285,7 +286,7 @@ const AddProduct = () => {
 								</div>
 							</div>
 
-							<button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+							<button className="uppercase flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
 								Add Product
 							</button>
 						</div>

@@ -13,6 +13,8 @@ import SingleProductPage from "../pages/SingleProductPage";
 import CartPage from "../pages/CartPage";
 import NotFound from "../pages/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
+import CheckoutPage from "../pages/CheckoutPage";
+import PaymentSuccess from "../components/PaymentSuccess";
 
 const router = createBrowserRouter([
 	{
@@ -25,11 +27,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "all-products",
-				element: <AllProductPage categoryStatus={false} />,
+				element: <AllProductPage />,
 			},
 			{
 				path: "all-products/:category",
-				element: <AllProductPage categoryStatus={true} />,
+				element: <AllProductPage />,
 			},
 			{
 				path: "product/:id",
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "checkout",
-				element: <h1>This is Checkout </h1>,
+				element: <CheckoutPage />,
 			},
 			{
 				path: "about-us",
@@ -78,6 +80,10 @@ const router = createBrowserRouter([
 	{
 		path: "/register",
 		element: <RegisterPage />,
+	},
+	{
+		path: "/success",
+		element: <PaymentSuccess />,
 	},
 	{
 		path: "*",

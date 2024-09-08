@@ -29,13 +29,13 @@ const Contact = () => {
 
 	return (
 		<section
-			className="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-md my-16"
+			className="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-md my-16 max-md:mx-5"
 			id="contact"
 		>
 			<h2 className="uppercase text-2xl text-center font-bold mb-10 p-5 text-[#6b68e7]">
 				Contact Us
 			</h2>
-			<div className="grid grid-cols-4 my-5">
+			<div className="grid grid-cols-4 my-5 max-md:flex max-md:flex-col">
 				<div className="col-span-2">
 					<img
 						src={contact}

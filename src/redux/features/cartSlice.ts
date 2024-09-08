@@ -46,14 +46,7 @@ export const cartSlice = createSlice({
 				(product) => product._id === action.payload._id
 			);
 			if (duplicate) {
-				const newCart = state.cart.map((product) => {
-					if (product._id === action.payload._id) {
-						return { ...product, qty: product.qty + 1 };
-					} else {
-						return product;
-					}
-				});
-				state.cart = [...newCart];
+				duplicate.qty += action.payload.qty;
 			} else {
 				state.cart.push(action.payload);
 			}
@@ -67,29 +60,28 @@ export const cartSlice = createSlice({
 			state,
 			action: PayloadAction<{ op: string; id: string }>
 		) => {
-			const selectedProduct = state.cart.filter((product) => {
-				if (product._id === action.payload.id) {
-					if (
-						action.payload.op === "+" &&
-						product.inventory.quantity > product.qty
-					) {
-						product.qty += 1;
-					}
-					if (action.payload.op === "-" && product.qty > 1) {
-						product.qty -= 1;
-					}
-					return product;
-				}
-			});
-			const otherProducts = state.cart.filter(
-				(product) => product._id !== action.payload.id
+			const product = state.cart.find(
+				(product) => product._id === action.payload.id
 			);
-			state.cart = [...selectedProduct, ...otherProducts];
+			if (product) {
+				if (
+					action.payload.op === "+" &&
+					product.inventory.quantity > product.qty
+				) {
+					product.qty += 1;
+				}
+				if (action.payload.op === "-" && product.qty > 1) {
+					product.qty -= 1;
+				}
+			}
+		},
+		emptyCart: (state) => {
+			state.cart = [];
 		},
 	},
 });
 
-export const { addToCart, removeFromCart, incrementDecrement } =
+export const { addToCart, removeFromCart, incrementDecrement, emptyCart } =
 	cartSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

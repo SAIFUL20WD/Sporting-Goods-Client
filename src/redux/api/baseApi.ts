@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
 	reducerPath: "baseApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "http://localhost:5000/api/",
+		baseUrl: "https://sporting-goods-server-nine.vercel.app/api/",
 		prepareHeaders: (headers) => {
 			const token = localStorage.getItem("token");
 			if (token) {
@@ -12,15 +12,19 @@ export const baseApi = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["products", "categories"],
+	tagTypes: ["products", "categories", "brands"],
 	endpoints: (builder) => ({
 		getAllProducts: builder.query({
-			query: (searchTerm) => `products/get-products`,
+			query: (query) => `products/get-products?${query}`,
 			providesTags: ["products"],
 		}),
 		getAllCategories: builder.query({
 			query: () => `products/get-categories`,
 			providesTags: ["categories"],
+		}),
+		getAllBrands: builder.query({
+			query: () => `products/get-brands`,
+			providesTags: ["brands"],
 		}),
 		getProductsByCategory: builder.query({
 			query: (category) => {
@@ -31,19 +35,19 @@ export const baseApi = createApi({
 			},
 			providesTags: ["products"],
 		}),
-		getProductById: builder.query({
-			query: (id) => {
+		getProductsByTag: builder.query({
+			query: (tag) => {
 				return {
-					url: `/products/${id}`,
+					url: `/products/getProductsByTag/${tag}`,
 					method: "GET",
 				};
 			},
 			providesTags: ["products"],
 		}),
-		getProductsByTag: builder.query({
-			query: (tag) => {
+		getProductById: builder.query({
+			query: (id) => {
 				return {
-					url: `/products/getProductsByTag/${tag}`,
+					url: `/products/${id}`,
 					method: "GET",
 				};
 			},
@@ -82,6 +86,7 @@ export const {
 	useUpdateProductMutation,
 	useDeleteProductMutation,
 	useGetAllCategoriesQuery,
+	useGetAllBrandsQuery,
 	useGetProductsByCategoryQuery,
 	useGetProductsByTagQuery,
 } = baseApi;

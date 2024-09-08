@@ -7,7 +7,7 @@ import { FaUserAlt } from "react-icons/fa";
 const Sidebar = () => {
 	return (
 		<aside
-			className={`col-span-3 absolute left-0 top-0 z-9999 min-h-screen w-72.5 overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0`}
+			className={`col-span-3 max-lg:hidden absolute left-0 top-0 z-9999 min-h-screen w-72.5 overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0`}
 		>
 			<div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
 				<NavLink to="/">

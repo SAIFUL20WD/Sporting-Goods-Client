@@ -6,6 +6,7 @@ import {
 import toast from "react-hot-toast";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPenToSquare } from "react-icons/fa6";
+import Loader from "../Loader";
 
 const ViewProducts = () => {
 	const { data } = useGetAllProductsQuery(null);
@@ -15,31 +16,33 @@ const ViewProducts = () => {
 
 	const handleConfirmation = (msg, id) => {
 		toast((t) => (
-			<span className="w-80">
+			<div>
 				Are You Sure to <b>{msg} This Product</b>
-				<button
-					onClick={() => {
-						toast.dismiss(t.id);
-						if (msg == "Delete") {
-							deleteProduct(id);
-							toast.success("Product deleted successfully");
-						} else if (msg == "Edit") {
-							navigate(`/manage-products/edit-product/${id}`);
-						}
-					}}
-					className="p-1 bg-red-500 text-white rounded mx-2"
-				>
-					Yes
-				</button>
-				<button
-					onClick={() => {
-						toast.dismiss(t.id);
-					}}
-					className="p-1 bg-green-500 text-white rounded"
-				>
-					No
-				</button>
-			</span>
+				<div className="flex justify-center mt-3">
+					<button
+						onClick={() => {
+							toast.dismiss(t.id);
+							if (msg == "Delete") {
+								deleteProduct(id);
+								toast.success("Product deleted successfully");
+							} else if (msg == "Edit") {
+								navigate(`/manage-products/edit-product/${id}`);
+							}
+						}}
+						className="p-1 bg-red-500 text-white rounded mx-2"
+					>
+						Yes
+					</button>
+					<button
+						onClick={() => {
+							toast.dismiss(t.id);
+						}}
+						className="p-1 bg-green-500 text-white rounded"
+					>
+						No
+					</button>
+				</div>
+			</div>
 		));
 	};
 
@@ -61,7 +64,7 @@ const ViewProducts = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{data &&
+					{data ? (
 						data.data.map((item, i) => {
 							return (
 								<tr key={item._id} className="[&>*]:p-5">
@@ -106,7 +109,10 @@ const ViewProducts = () => {
 									</td>
 								</tr>
 							);
-						})}
+						})
+					) : (
+						<Loader />
+					)}
 				</tbody>
 			</table>
 		</div>

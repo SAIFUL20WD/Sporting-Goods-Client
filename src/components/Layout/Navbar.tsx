@@ -26,7 +26,7 @@ const Navbar = () => {
 				}
 			}}
 		>
-			<ul className="flex max-md:flex-col justify-start items-center md:[&>li]:m-2 lg:[&>li]:mx-5 font-semibold">
+			<ul className="flex max-md:flex-col max-md:mb-5 justify-start items-center max-md:[&>li]:m-1 max-lg:[&>li]:mx-3 [&>li]:mx-5 font-semibold">
 				<li>
 					<NavLink
 						to="/"

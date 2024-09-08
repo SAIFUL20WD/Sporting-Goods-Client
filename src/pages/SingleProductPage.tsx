@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cartSlice";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const SingleProductPage = () => {
 	const { id } = useParams();
@@ -17,17 +18,6 @@ const SingleProductPage = () => {
 	const [disable, setDisable] = useState(false);
 
 	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		if (data) {
-			const stock = data?.data?.inventory?.quantity;
-			if (quantity > stock) {
-				setDisable(true);
-			} else {
-				setDisable(false);
-			}
-		}
-	}, [data, quantity]);
 
 	const handleIncreaseDecrease = (operation: string) => {
 		if (operation === "inc") {
@@ -44,6 +34,17 @@ const SingleProductPage = () => {
 		toast.success("Product added to cart");
 	};
 
+	useEffect(() => {
+		if (data) {
+			const stock = data?.data?.inventory?.quantity;
+			if (quantity > stock) {
+				setDisable(true);
+			} else {
+				setDisable(false);
+			}
+		}
+	}, [data, quantity]);
+
 	if (data) {
 		const {
 			name,
@@ -59,8 +60,8 @@ const SingleProductPage = () => {
 		return (
 			<section className="max-w-5xl mx-auto my-20">
 				<Toaster />
-				<div className="grid grid-cols-2">
-					<div className="col-span-1">
+				<div className="grid grid-cols-2 max-md:grid-cols-1">
+					<div className="col-span-1 max-md:mx-5">
 						<PhotoProvider>
 							<div className="w-100">
 								<PhotoView src={image[0]}>
@@ -69,7 +70,7 @@ const SingleProductPage = () => {
 							</div>
 						</PhotoProvider>
 					</div>
-					<div className="col-span-1">
+					<div className="col-span-1 max-md:mx-5">
 						<div className="pb-5 border-b border-zinc-200">
 							<h3 className="text-lg font-bold">{brand}</h3>
 							<h2 className="text-3xl font-semibold my-3">
@@ -149,7 +150,7 @@ const SingleProductPage = () => {
 			</section>
 		);
 	} else {
-		return <div>Loading...</div>;
+		return <Loader />;
 	}
 };
 

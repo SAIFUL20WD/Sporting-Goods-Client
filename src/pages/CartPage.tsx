@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	incrementDecrement,
 	removeFromCart,
@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
 import toast, { Toaster } from "react-hot-toast";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
 	const cart = useAppSelector((state: RootState) => state.cart.cart);
@@ -60,23 +61,26 @@ const CartPage = () => {
 		setSubTotal(totalWithTax);
 	};
 
+	useEffect(() => {
+		subTotalCalc();
+	}, [cart]);
+
 	return (
 		<section className="max-w-6xl mx-auto my-10" onLoad={subTotalCalc}>
 			<Toaster />
-			<h3 className="text-3xl text-center font-semibold uppercase my-5">
-				Shopping Cart
+			<h3 className="text-3xl text-center text-[#6b68e7] font-semibold uppercase my-5">
+				Cart
 			</h3>
-			<div className="grid place-content-center">
-				<table className="table-auto bg-white rounded shadow-lg">
+			<div className="grid grid-cols-12 gap-10">
+				<table className="col-span-12 table-auto bg-white rounded shadow-lg">
 					<thead>
-						<tr className="[&>*]:p-5 border-b-2 border-slate-400">
+						<tr className="[&>*]:p-5 border-b-2 border-slate-400 uppercase">
 							<th>No</th>
 							<th>Image</th>
-							<th>Product Name</th>
+							<th>Product</th>
+							<th>Price</th>
 							<th>Quantity</th>
-							<th>Unit Price</th>
-							<th>Total</th>
-							<th>Action</th>
+							<th>Subtotal</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -84,7 +88,7 @@ const CartPage = () => {
 							return (
 								<tr
 									key={item._id}
-									className="[&>*]:p-5 text-center"
+									className="[&>*]:p-5 text-center border-b border-zinc-300"
 								>
 									<td>{i + 1}</td>
 									<td>
@@ -94,7 +98,10 @@ const CartPage = () => {
 											className="w-16"
 										/>
 									</td>
-									<td>{item.name}</td>
+									<td className="font-semibold">
+										{item.name}
+									</td>
+									<td>${item.price}</td>
 									<td>
 										<span
 											className="bg-white px-3 py-1 border cursor-pointer"
@@ -122,9 +129,9 @@ const CartPage = () => {
 											-
 										</span>
 									</td>
-									<td>{item.price}</td>
-									<td>{item.price * item.qty}</td>
-									<td className="flex mt-3">
+
+									<td>${item.price * item.qty}</td>
+									<td>
 										<button
 											className="bg-red-500 text-white cursor-pointer rounded p-2"
 											onClick={() =>
@@ -139,12 +146,17 @@ const CartPage = () => {
 						})}
 					</tbody>
 				</table>
-				<div className="flex justify-end my-10">
-					<p className="text-xl font-bold text-zinc-700">
-						Sub Total including 15% TAX:{" "}
-						<span className="text-[#6b68e7]">${subTotal}</span>
-					</p>
-				</div>
+			</div>
+			<div className=" p-5 my-3">
+				<p className="text-xl text-end font-bold text-zinc-700 mb-3">
+					Total: <span className="text-[#6b68e7]">${subTotal}</span>
+					<span className="text-sm"> (15% VAT Included)</span>
+				</p>
+				<Link to="/checkout">
+					<button className="uppercase flex w-full justify-center rounded p-3 font-medium hover:bg-opacity-90 bg-primary text-gray">
+						Proceed To Checkout
+					</button>
+				</Link>
 			</div>
 		</section>
 	);

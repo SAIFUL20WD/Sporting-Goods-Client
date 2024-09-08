@@ -10,8 +10,8 @@ import { IoMdCall, IoMdMail } from "react-icons/io";
 
 const Footer = () => {
 	return (
-		<footer className="container bg-slate-950 text-[#bbb] p-10">
-			<section className="max-w-7xl mx-auto grid grid-cols-12 text-sm">
+		<footer className="bg-slate-950 text-[#bbb]">
+			<section className="max-w-7xl mx-auto grid grid-cols-12 max-md:grid-cols-3 max-md:mx-20 text-sm p-10">
 				<div className="col-span-3">
 					<div className="text-sm">
 						<h4 className="uppercase text-white text-lg font-medium my-3">
@@ -137,7 +137,7 @@ const Footer = () => {
 					</div>
 				</div>
 			</section>
-			<div className="border-t text-center mt-5 pt-5">
+			<div className="border-t text-center py-3 max-md:mx-5">
 				Sporting Goods © 2024 Store. All Rights Reserved. Made with Love
 				by SAF
 			</div>
