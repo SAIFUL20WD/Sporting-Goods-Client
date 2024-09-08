@@ -22,7 +22,9 @@ const AllProductPage = () => {
 	const [brands, setbrands] = useState<string[]>([]);
 	const [ratings, setRatings] = useState<number[]>([]);
 
-	const { data: productsData, refetch } = useGetAllProductsQuery(query);
+	const { data: productsData, refetch } = useGetAllProductsQuery(query, {
+		pollingInterval: 30000,
+	});
 	const { data: categoriesData } = useGetAllCategoriesQuery(null);
 	const { data: brandsData } = useGetAllBrandsQuery(null);
 	const ratingData = [1, 2, 3, 4, 5];

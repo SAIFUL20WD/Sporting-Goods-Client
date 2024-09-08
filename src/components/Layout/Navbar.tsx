@@ -6,6 +6,7 @@ import { useState } from "react";
 import { logOut } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -13,6 +14,7 @@ const Navbar = () => {
 	const handleLogOut = () => {
 		localStorage.removeItem("token");
 		logOut();
+		toast.success("Logged Out");
 		setLoggedIn(false);
 	};
 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
 
 const Category = () => {
-	const { data } = useGetAllCategoriesQuery(null);
+	const { data } = useGetAllCategoriesQuery(null, { pollingInterval: 30000 });
 	return (
 		<section className="max-w-7xl mx-auto">
 			<h2 className="uppercase text-2xl text-center font-bold mb-10 p-5 text-[#6b68e7]">

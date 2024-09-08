@@ -3,7 +3,9 @@ import { useGetProductsByTagQuery } from "../../redux/api/baseApi";
 import { Rating } from "@smastrom/react-rating";
 
 const Featured = () => {
-	const { data } = useGetProductsByTagQuery("featured");
+	const { data } = useGetProductsByTagQuery("featured", {
+		pollingInterval: 30000,
+	});
 
 	return (
 		<section className="max-w-5xl mx-auto my-10">
