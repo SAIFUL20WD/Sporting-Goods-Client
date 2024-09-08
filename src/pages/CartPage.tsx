@@ -7,13 +7,15 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
 import toast, { Toaster } from "react-hot-toast";
 import { FaTrashAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
 	const cart = useAppSelector((state: RootState) => state.cart.cart);
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const [subTotal, setSubTotal] = useState(0);
+	const [disable, setDisable] = useState(false);
 
 	const handleDelete = (id: string) => {
 		toast((t) => (
@@ -61,8 +63,24 @@ const CartPage = () => {
 		setSubTotal(totalWithTax);
 	};
 
+	const handleProceedToCheckout = () => {
+		navigate("/checkout");
+	};
+
 	useEffect(() => {
 		subTotalCalc();
+		let flag = false;
+		cart.forEach((product) => {
+			const newDBQuantity = product.inventory.quantity - product.qty;
+			if (newDBQuantity < 0) {
+				flag = true;
+			}
+		});
+		if (flag) {
+			setDisable(true);
+		} else {
+			setDisable(false);
+		}
 	}, [cart]);
 
 	return (
@@ -152,11 +170,17 @@ const CartPage = () => {
 					Total: <span className="text-[#6b68e7]">${subTotal}</span>
 					<span className="text-sm"> (15% VAT Included)</span>
 				</p>
-				<Link to="/checkout">
-					<button className="uppercase flex w-full justify-center rounded p-3 font-medium hover:bg-opacity-90 bg-primary text-gray">
-						Proceed To Checkout
-					</button>
-				</Link>
+				<button
+					className={`uppercase flex w-full justify-center rounded p-3 font-medium hover:bg-opacity-90 ${
+						disable
+							? "bg-gray cursor-not-allowed"
+							: "bg-primary text-gray"
+					}`}
+					onClick={handleProceedToCheckout}
+					disabled={disable}
+				>
+					Proceed To Checkout
+				</button>
 			</div>
 		</section>
 	);
