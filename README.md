@@ -84,7 +84,7 @@ Instructions on how to install, configure, and get the project running locally.
 
 Instructions or examples for using the project. Include screenshots or code snippets if applicable.
 
-### Project Live Link: [Netlify](Link)
+### Project Live Link: [Netlify](https://gleeful-chebakia-5edd6c.netlify.app/)
 
 ## Contributing
 
