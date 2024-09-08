@@ -1,3 +1,7 @@
+import team1 from "../assets/images/team/team_1.jpg";
+import team2 from "../assets/images/team/team_2.jpeg";
+import team3 from "../assets/images/team/team_3.jpg";
+
 const AboutUsPage = () => {
 	return (
 		<section className="container max-w-7xl mx-auto">
@@ -78,7 +82,7 @@ const AboutUsPage = () => {
 						<div className="w-full md:w-1/3 px-4 mb-6">
 							<div className="bg-gray-200 p-4 rounded-lg text-center">
 								<img
-									src="../../src/assets/images/team/team_1.jpg"
+									src={team1}
 									alt="Team Member 1"
 									className="w-32 h-32 mx-auto rounded-full mb-4"
 								/>
@@ -91,7 +95,7 @@ const AboutUsPage = () => {
 						<div className="w-full md:w-1/3 px-4 mb-6">
 							<div className="bg-gray-200 p-4 rounded-lg text-center">
 								<img
-									src="../../src/assets/images/team/team_2.jpeg"
+									src={team2}
 									alt="Team Member 2"
 									className="w-32 h-32 mx-auto rounded-full mb-4"
 								/>
@@ -106,7 +110,7 @@ const AboutUsPage = () => {
 						<div className="w-full md:w-1/3 px-4 mb-6">
 							<div className="bg-gray-200 p-4 rounded-lg text-center">
 								<img
-									src="../../src/assets/images/team/team_3.jpg"
+									src={team3}
 									alt="Team Member 3"
 									className="w-32 h-32 mx-auto rounded-full mb-4"
 								/>
