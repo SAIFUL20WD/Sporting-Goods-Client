@@ -2,7 +2,10 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../assets/images/logo/logo.png";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
-import { FaUserAlt } from "react-icons/fa";
+import { FaStore, FaUserAlt } from "react-icons/fa";
+import { SiCashapp } from "react-icons/si";
+import { PiUsersBold } from "react-icons/pi";
+import { MdOutlineHome } from "react-icons/md";
 
 const Sidebar = () => {
 	return (
@@ -25,6 +28,15 @@ const Sidebar = () => {
 						<ul className="mb-6 flex flex-col gap-1.5">
 							<li>
 								<NavLink
+									to="/dashboard"
+									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+								>
+									<MdOutlineHome size={28} />
+									Home
+								</NavLink>
+							</li>
+							<li>
+								<NavLink
 									to="view-products"
 									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
 								>
@@ -40,6 +52,36 @@ const Sidebar = () => {
 								>
 									<IoMdAddCircleOutline size={24} />
 									Add Product
+								</NavLink>
+							</li>
+
+							<li>
+								<NavLink
+									to="/dashboard/users"
+									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+								>
+									<PiUsersBold size={24} />
+									Users
+								</NavLink>
+							</li>
+
+							<li>
+								<NavLink
+									to="/dashboard/orders"
+									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+								>
+									<FaStore size={24} />
+									Orders
+								</NavLink>
+							</li>
+
+							<li>
+								<NavLink
+									to="/dashboard/payments"
+									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+								>
+									<SiCashapp size={24} />
+									Payments
 								</NavLink>
 							</li>
 

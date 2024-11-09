@@ -17,6 +17,10 @@ import PaymentSuccess from "../components/PaymentSuccess";
 import ContactUsPage from "../pages/ContactUsPage";
 import ProfilePage from "../pages/ProfilePage";
 import DashboardPage from "../pages/DashboardPage";
+import Orders from "../components/Orders";
+import Payments from "../components/Payments";
+import DashboardCards from "../components/DashboardCards";
+import Users from "../components/Users";
 
 const router = createBrowserRouter([
 	{
@@ -66,6 +70,10 @@ const router = createBrowserRouter([
 		),
 		children: [
 			{
+				path: "",
+				element: <DashboardCards />,
+			},
+			{
 				path: "view-products",
 				element: <ViewProducts />,
 			},
@@ -76,6 +84,18 @@ const router = createBrowserRouter([
 			{
 				path: "edit-product/:id",
 				element: <EditProduct />,
+			},
+			{
+				path: "users",
+				element: <Users />,
+			},
+			{
+				path: "orders",
+				element: <Orders />,
+			},
+			{
+				path: "payments",
+				element: <Payments />,
 			},
 			{
 				path: "profile",

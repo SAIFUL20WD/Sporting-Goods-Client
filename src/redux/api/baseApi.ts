@@ -76,6 +76,37 @@ export const baseApi = createApi({
 			}),
 			invalidatesTags: ["products"],
 		}),
+		createOrder: builder.mutation({
+			query: (data) => ({
+				url: "/orders/create-order",
+				method: "POST",
+				body: data,
+			}),
+		}),
+		getAllUsers: builder.query({
+			query: () => ({
+				url: "/users/get-all-users",
+				method: "GET",
+			}),
+		}),
+		getAllOrders: builder.query({
+			query: () => ({
+				url: "/orders/get-all-orders",
+				method: "GET",
+			}),
+		}),
+		getAllPayments: builder.query({
+			query: () => ({
+				url: "/payments/get-all-payments",
+				method: "GET",
+			}),
+		}),
+		getStatistics: builder.query({
+			query: () => ({
+				url: "/orders/get-statistics",
+				method: "GET",
+			}),
+		}),
 	}),
 });
 
@@ -89,4 +120,9 @@ export const {
 	useGetAllBrandsQuery,
 	useGetProductsByCategoryQuery,
 	useGetProductsByTagQuery,
+	useCreateOrderMutation,
+	useGetAllUsersQuery,
+	useGetAllOrdersQuery,
+	useGetAllPaymentsQuery,
+	useGetStatisticsQuery,
 } = baseApi;
