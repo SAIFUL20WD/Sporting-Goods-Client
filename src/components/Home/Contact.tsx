@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import contact from "../../assets/images/contact.png";
+import toast from "react-hot-toast";
 
 const Contact = () => {
 	const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const Contact = () => {
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		console.log("Form data submitted:", formData);
+		toast.success("Message sent successfully");
 		setFormData({
 			name: "",
 			email: "",
@@ -29,7 +30,7 @@ const Contact = () => {
 
 	return (
 		<section
-			className="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-md my-16 max-md:mx-5"
+			className="p-6 bg-white shadow-lg rounded-md mx-8 my-16 max-md:mx-5"
 			id="contact"
 		>
 			<h2 className="uppercase text-2xl text-center font-bold mb-10 p-5 text-[#6b68e7]">

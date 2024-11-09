@@ -40,7 +40,7 @@ const CheckoutPage = () => {
 	};
 
 	return (
-		<section className="max-w-7xl mx-auto p-10">
+		<section className="max-w-7xl mx-auto p-8">
 			<div className="col-span-8 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
 				<div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
 					<h3 className="font-medium text-black dark:text-white">
@@ -180,7 +180,7 @@ const CheckoutPage = () => {
 						</div>
 
 						<button className="uppercase flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-							PlaceOrder
+							Place Order
 						</button>
 					</div>
 				</form>

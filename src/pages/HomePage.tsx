@@ -1,7 +1,7 @@
 import Category from "../components/Home/Category";
-import Contact from "../components/Home/Contact";
 import Featured from "../components/Home/Featured";
 import Hero from "../components/Home/Hero";
+import Newsletter from "../components/Home/Newsletter";
 
 const HomePage = () => {
 	return (
@@ -9,7 +9,7 @@ const HomePage = () => {
 			<Hero />
 			<Featured />
 			<Category />
-			<Contact />
+			<Newsletter />
 		</>
 	);
 };

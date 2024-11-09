@@ -75,7 +75,7 @@ const AboutUsPage = () => {
 				</section>
 
 				<section className="bg-white p-6 rounded-lg shadow-md mb-12">
-					<h2 className="text-3xl font-semibold text-gray-800 mb-4">
+					<h2 className="text-3xl text-center font-semibold text-gray-800 mb-4">
 						Our Team
 					</h2>
 					<div className="flex flex-wrap -mx-4">

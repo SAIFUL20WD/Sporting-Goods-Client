@@ -2,7 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Layout/Sidebar";
 
-const ManageProductsPage = () => {
+const DashboardPage = () => {
 	return (
 		<section>
 			<Toaster />
@@ -16,4 +16,4 @@ const ManageProductsPage = () => {
 	);
 };
 
-export default ManageProductsPage;
+export default DashboardPage;

@@ -5,7 +5,7 @@ import {
 	useGetAllProductsQuery,
 } from "../redux/api/baseApi";
 import { FaSearch } from "react-icons/fa";
-import RangeSlider from "react-range-slider-input";
+// import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../components/Loader";
@@ -88,7 +88,7 @@ const AllProductPage = () => {
 
 	return (
 		<section className="max-w-7xl mx-auto my-10">
-			<div className="flex max-sm:flex-col max-sm:ml-10 justify-between">
+			<div className="flex max-sm:flex-col max-sm:ml-10 ml-8 justify-between">
 				<div className="mb-4.5 relative">
 					<input
 						type="text"
@@ -104,7 +104,7 @@ const AllProductPage = () => {
 						onClick={() => setSearch(searchRef.current.value)}
 					/>
 				</div>
-				<div>
+				<div className="mr-10">
 					<label htmlFor="sort" className="font-bold">
 						Sort By:{" "}
 					</label>
@@ -131,12 +131,12 @@ const AllProductPage = () => {
 							Clear Filter
 						</button>
 					</div>
-					<div className="my-3">
+					{/* <div className="my-3">
 						<h4 className="text-xl font-semibold p-3 border-b mb-5">
 							Price Range
 						</h4>
 						<RangeSlider />
-					</div>
+					</div> */}
 					<div className="my-3">
 						<h4 className="text-xl font-semibold p-3 border-b">
 							{category ? "" : "Categories"}
@@ -221,7 +221,7 @@ const AllProductPage = () => {
 							return (
 								<div
 									key={product._id}
-									className="col-span-4 max-h-125 max-sm:col-span-12 max-lg:col-span-6 m-5 max-sm:ml-10 text-center flex flex-col justify-center items-center shadow-lg rounded-xl p-5 hover:shadow-2xl hover:scale-x-105 duration-300 max-w-xs"
+									className="col-span-4 max-h-125 max-sm:col-span-12 max-lg:col-span-6 m-5 max-sm:ml-10 text-center flex flex-col justify-between items-center shadow-lg rounded-xl p-5 hover:shadow-2xl hover:scale-x-105 duration-300 max-w-xs"
 								>
 									<div className="w-60">
 										<img src={product.image[0]} alt="" />

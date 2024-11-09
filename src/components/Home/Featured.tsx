@@ -9,7 +9,7 @@ const Featured = () => {
 	});
 
 	return (
-		<section className="max-w-5xl mx-auto my-10">
+		<section className="max-w-5xl mx-auto my-5">
 			<h2 className="uppercase text-2xl text-center font-bold text-[#6b68e7] p-5 my-5">
 				Featured Products
 			</h2>
@@ -81,7 +81,7 @@ const Featured = () => {
 									</p>
 									<Link to={`/product/${product._id}`}>
 										<button className="text-white text-center px-10 py-3 my-5 rounded font-bold bg-gradient-to-r from-indigo-500 to-indigo-800">
-											View Details
+											Order Now
 										</button>
 									</Link>
 								</div>

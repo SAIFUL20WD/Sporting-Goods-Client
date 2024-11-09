@@ -4,11 +4,11 @@ import { useGetAllCategoriesQuery } from "../../redux/api/baseApi";
 const Category = () => {
 	const { data } = useGetAllCategoriesQuery(null, { pollingInterval: 30000 });
 	return (
-		<section className="max-w-7xl mx-auto">
+		<section className="max-w-7xl mx-auto my-10">
 			<h2 className="uppercase text-2xl text-center font-bold mb-10 p-5 text-[#6b68e7]">
 				Categories
 			</h2>
-			<div className="grid grid-cols-12 gap-5 mx-5">
+			<div className="grid grid-cols-12 gap-5 mx-10">
 				{data?.data?.map((item, i) => {
 					return (
 						<Link

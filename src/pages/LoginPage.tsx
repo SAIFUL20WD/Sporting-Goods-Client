@@ -8,7 +8,7 @@ import { setUser } from "../redux/features/auth/authSlice";
 import logo from "../assets/images/logo/Sporting Goods Logo.png";
 
 const LoginPage = () => {
-	const [loginData, setLoginData] = useState({});
+	const [loginData, setLoginData] = useState({ email: "", password: "" });
 	const navigate = useNavigate();
 
 	const [login] = useLoginMutation();
@@ -180,9 +180,23 @@ const LoginPage = () => {
 							<span className="mb-1.5 block font-medium">
 								Start for free
 							</span>
-							<h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
+							<h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
 								Sign In to Sporting Goods
 							</h2>
+
+							<div>
+								<button
+									className="btn text-white bg-primary px-8 py-4 rounded-md my-3"
+									onClick={() =>
+										setLoginData({
+											email: "saiful@gmail.com",
+											password: "Saiful123",
+										})
+									}
+								>
+									Fill Demo Credential
+								</button>
+							</div>
 
 							<form onSubmit={handleSubmit}>
 								<div className="mb-4">
@@ -193,6 +207,7 @@ const LoginPage = () => {
 										<input
 											type="email"
 											placeholder="Enter your email"
+											value={loginData.email}
 											name="email"
 											required
 											className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -233,6 +248,7 @@ const LoginPage = () => {
 										<input
 											type="password"
 											placeholder="Enter your password"
+											value={loginData.password}
 											name="password"
 											required
 											className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -292,6 +308,14 @@ const LoginPage = () => {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div className="flex justify-center">
+				<Link
+					to="/"
+					className="text-white bg-primary px-8 py-4 rounded-md my-3"
+				>
+					Go Home
+				</Link>
 			</div>
 		</section>
 	);

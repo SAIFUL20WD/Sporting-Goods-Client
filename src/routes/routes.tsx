@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import HomePage from "../pages/HomePage";
 import AllProductPage from "../pages/AllProductPage";
-import ManageProductsPage from "../pages/ManageProductsPage";
 import LoginPage from "../pages/LoginPage";
 import AddProduct from "../components/ManageProducts/AddProduct";
 import ViewProducts from "../components/ManageProducts/ViewProducts";
@@ -15,6 +14,9 @@ import NotFound from "../pages/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
 import CheckoutPage from "../pages/CheckoutPage";
 import PaymentSuccess from "../components/PaymentSuccess";
+import ContactUsPage from "../pages/ContactUsPage";
+import ProfilePage from "../pages/ProfilePage";
+import DashboardPage from "../pages/DashboardPage";
 
 const router = createBrowserRouter([
 	{
@@ -49,13 +51,17 @@ const router = createBrowserRouter([
 				path: "about-us",
 				element: <AboutUsPage />,
 			},
+			{
+				path: "contact-us",
+				element: <ContactUsPage />,
+			},
 		],
 	},
 	{
-		path: "manage-products",
+		path: "/dashboard",
 		element: (
 			<ProtectedRoute>
-				<ManageProductsPage />
+				<DashboardPage />
 			</ProtectedRoute>
 		),
 		children: [
@@ -70,6 +76,10 @@ const router = createBrowserRouter([
 			{
 				path: "edit-product/:id",
 				element: <EditProduct />,
+			},
+			{
+				path: "profile",
+				element: <ProfilePage />,
 			},
 		],
 	},
